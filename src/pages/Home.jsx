@@ -124,16 +124,31 @@ function Hero() {
 }
 
 function ParallaxSection() {
+  const sectionRef = useRef(null)
+  const imgRef = useRef(null)
+
+  useEffect(() => {
+    let rafId
+    const tick = () => {
+      if (sectionRef.current && imgRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect()
+        const offset = rect.top * 0.25
+        imgRef.current.style.transform = `translateY(${offset}px) scale(1.15)`
+      }
+      rafId = requestAnimationFrame(tick)
+    }
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
+  }, [])
+
   return (
     <section
-      className="parallax-section relative h-[50vh] flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: 'url(/assets/exterior-1.jpg)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      ref={sectionRef}
+      className="relative h-[50vh] flex items-center justify-center overflow-hidden"
     >
+      <div ref={imgRef} className="absolute inset-0 w-full h-full" style={{ willChange: 'transform' }}>
+        <PhotoPlaceholder src="exterior-1.jpg" alt="" className="w-full h-full" />
+      </div>
       <div className="absolute inset-0 bg-black/65" />
 
       <motion.div
