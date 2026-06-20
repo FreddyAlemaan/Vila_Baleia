@@ -80,7 +80,7 @@ function Sobre() {
         <div className="grid md:grid-cols-3 gap-10">
           {valores.map((v) => (
             <motion.div key={v.title} variants={fadeInUp} className="text-center">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#A51C4B" strokeWidth="1.5" className="w-10 h-10 mx-auto mb-5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.5" className="w-10 h-10 mx-auto mb-5">
                 <path d={v.icon} />
               </svg>
               <h3 className="font-serif text-xl text-white">{v.title}</h3>

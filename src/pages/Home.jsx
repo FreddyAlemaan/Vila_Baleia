@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import PhotoPlaceholder from '../components/PhotoPlaceholder'
 import { fadeInUp, fadeIn, staggerContainer, viewportOnce } from '../animations/variants'
 import { featuredDishes } from '../data/menu'
@@ -19,46 +19,46 @@ const stats = [
   { value: 'nº4', label: 'Restaurante em Porto Moniz' },
 ]
 
+const eyebrowClass = 'text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase'
+
+function ChapterDivider() {
+  return (
+    <div className="max-w-7xl mx-auto px-6 flex items-center gap-4 py-2">
+      <div className="flex-1 h-px bg-border" />
+      <div className="w-1 h-1 rounded-full bg-navy-light" />
+      <div className="flex-1 h-px bg-border" />
+    </div>
+  )
+}
+
 function Hero() {
-  const imgRef = useRef(null)
-
-  useEffect(() => {
-    let current = 0
-    let target = 0
-    let rafId
-
-    const onScroll = () => {
-      target = window.scrollY * 0.15
-    }
-
-    const lerp = () => {
-      current += (target - current) * 0.08
-      if (imgRef.current) {
-        imgRef.current.style.transform = `translateY(${current}px) scale(1.1)`
-      }
-      rafId = requestAnimationFrame(lerp)
-    }
-
-    window.addEventListener('scroll', onScroll)
-    rafId = requestAnimationFrame(lerp)
-
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      cancelAnimationFrame(rafId)
-    }
-  }, [])
+  const [videoError, setVideoError] = useState(false)
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      <div ref={imgRef} className="absolute inset-0 w-full h-full">
+      {!videoError ? (
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            onError={() => setVideoError(true)}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: 'brightness(0.45)' }}
+          >
+            <source src="/assets/hero-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+      ) : (
         <PhotoPlaceholder
           src="exterior-1.jpg"
           alt="Vila Baleia"
           label="exterior-1.jpg"
-          className="w-full h-full"
+          className="absolute inset-0 w-full h-full"
         />
-      </div>
-      <div className="absolute inset-0 bg-black/60" />
+      )}
+      <div className="absolute inset-0 bg-black/50" />
 
       <motion.div
         variants={staggerContainer}
@@ -73,10 +73,7 @@ function Hero() {
           className="h-10 w-auto mb-4 opacity-90"
         />
 
-        <motion.span
-          variants={fadeInUp}
-          className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase mb-6"
-        >
+        <motion.span variants={fadeInUp} className={`${eyebrowClass} mb-6`}>
           Porto Moniz · Madeira
         </motion.span>
 
@@ -126,6 +123,41 @@ function Hero() {
   )
 }
 
+function ParallaxSection() {
+  return (
+    <section
+      className="parallax-section relative h-[50vh] flex items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: 'url(/assets/exterior-1.jpg)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/65" />
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+        className="relative z-10 text-center px-6"
+      >
+        <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-4`}>
+          Porto Moniz · Madeira
+        </motion.p>
+        <motion.h2 variants={fadeInUp} className="font-serif text-4xl md:text-5xl text-white leading-tight mb-4">
+          Onde o oceano <em className="text-navy-light">encontra</em>
+          <br />a montanha
+        </motion.h2>
+        <motion.p variants={fadeInUp} className="text-sm text-white/50 tracking-widest font-light max-w-md mx-auto">
+          No extremo norte da ilha, a natureza e a gastronomia encontram-se à mesa.
+        </motion.p>
+      </motion.div>
+    </section>
+  )
+}
+
 function InfoBar() {
   return (
     <section className="bg-[#080808] border-t border-b border-border">
@@ -147,7 +179,7 @@ function InfoBar() {
   )
 }
 
-function SobrePreview() {
+function CapituloLugar() {
   return (
     <motion.section
       initial="hidden"
@@ -157,26 +189,23 @@ function SobrePreview() {
       className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center"
     >
       <motion.div variants={fadeInUp}>
-        <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
-          A Nossa História
-        </span>
-        <h2 className="font-serif text-3xl md:text-4xl text-white mt-4 leading-snug">
-          Tradição e <span className="italic text-navy-light">sabor</span> num só lugar
-        </h2>
-        <p className="text-text-muted font-light text-sm leading-relaxed mt-6">
-          No coração de Porto Moniz, o Vila Baleia serve a melhor gastronomia madeiriense desde
-          há mais de 15 anos. Da espetada tradicional às lapas grelhadas com manteiga de alho,
-          cada prato conta a história da ilha.
-        </p>
-
-        <div className="grid grid-cols-2 gap-6 mt-10">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="font-serif text-3xl text-white">{s.value}</div>
-              <div className="text-text-muted text-[11px] uppercase tracking-[0.1em] mt-1">{s.label}</div>
-            </div>
-          ))}
-        </div>
+        <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
+          Capítulo I
+        </motion.p>
+        <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-white leading-tight">
+          Um lugar onde o tempo
+          <br />
+          <em className="italic text-navy-light">parece parar</em>
+        </motion.h2>
+        <motion.p variants={fadeInUp} className="text-text-muted font-light text-sm leading-relaxed mt-6">
+          No coração de Porto Moniz, entre montanhas verdes e o Atlântico infinito, o Vila Baleia
+          nasceu da paixão pela gastronomia da ilha.
+        </motion.p>
+        <motion.p variants={fadeInUp} className="text-text-muted font-light text-sm leading-relaxed mt-4">
+          Cada prato que servimos carrega décadas de tradição madeiriense — desde as lapas
+          grelhadas com manteiga de alho até à espetada regional preparada como manda a receita
+          antiga.
+        </motion.p>
       </motion.div>
 
       <motion.div variants={fadeInUp}>
@@ -191,6 +220,84 @@ function SobrePreview() {
   )
 }
 
+function parseStatValue(raw) {
+  const match = raw.match(/^(\D*)(\d+)(\D*)$/)
+  if (!match) return { prefix: '', target: 0, suffix: raw }
+  const [, prefix, digits, suffix] = match
+  return { prefix, target: parseInt(digits, 10), suffix }
+}
+
+function useCountUp(target, inView, duration = 2000) {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    let start = 0
+    const step = target / (duration / 16)
+    const timer = setInterval(() => {
+      start += step
+      if (start >= target) {
+        setCount(target)
+        clearInterval(timer)
+      } else {
+        setCount(Math.floor(start))
+      }
+    }, 16)
+    return () => clearInterval(timer)
+  }, [inView, target, duration])
+
+  return count
+}
+
+function StatItem({ value, label, inView }) {
+  const { prefix, target, suffix } = parseStatValue(value)
+  const count = useCountUp(target, inView)
+
+  return (
+    <div className="text-center">
+      <div className="font-serif text-4xl text-white">
+        {prefix}
+        {count}
+        {suffix}
+      </div>
+      <div className="text-text-muted text-[11px] uppercase tracking-[0.1em] mt-2">{label}</div>
+    </div>
+  )
+}
+
+function CapituloTradicao() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  return (
+    <motion.section
+      ref={ref}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
+      variants={staggerContainer}
+      className="bg-bg-soft py-24"
+    >
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
+          Capítulo II
+        </motion.p>
+        <motion.h3 variants={fadeInUp} className="font-serif text-3xl text-white mb-12">
+          Mais de uma década
+          <br />
+          <em className="italic text-navy-light">de história</em>
+        </motion.h3>
+
+        <motion.div variants={fadeInUp} className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-3xl mx-auto">
+          {stats.map((s) => (
+            <StatItem key={s.label} value={s.value} label={s.label} inView={inView} />
+          ))}
+        </motion.div>
+      </div>
+    </motion.section>
+  )
+}
+
 function MenuDestaque() {
   return (
     <motion.section
@@ -198,16 +305,22 @@ function MenuDestaque() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={staggerContainer}
-      className="bg-bg-soft py-24"
+      className="py-24"
     >
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={fadeInUp} className="text-center mb-14">
-          <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
-            Os Nossos Pratos
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl text-white mt-4">
-            Menu em <span className="italic text-navy-light">destaque</span>
-          </h2>
+          <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
+            Capítulo III
+          </motion.p>
+          <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-white mb-3">
+            Do mar à mesa,
+            <br />
+            <em className="italic text-navy-light">em minutos</em>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-sm text-text-muted font-light mt-3 max-w-lg mx-auto">
+            Os nossos ingredientes chegam frescos todos os dias. A nossa cozinha transforma-os na
+            experiência gastronómica que Madeira merece.
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -283,21 +396,32 @@ function ReservasCTA() {
     >
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
         <motion.div variants={fadeInUp} className="flex flex-col justify-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-white">
-            Reserve a sua <span className="italic text-navy-light">mesa</span>
-          </h2>
-          <blockquote className="border-l-2 border-navy pl-5 mt-8">
+          <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
+            Capítulo IV
+          </motion.p>
+          <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-white mb-3">
+            A sua mesa
+            <br />
+            <em className="italic text-navy-light">está à espera</em>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-sm text-text-muted font-light mb-8 max-w-md">
+            Reserve agora e garanta o seu lugar numa experiência que não vai esquecer.
+          </motion.p>
+
+          <motion.blockquote variants={fadeInUp} className="border-l-2 border-navy pl-5 mt-2">
             <p className="text-text-muted font-light italic text-sm leading-relaxed">
               "O melhor restaurante de Porto Moniz. Comida incrível, serviço simpático."
             </p>
             <cite className="block text-[#555] text-xs mt-3 not-italic">— Visitante no Google, 2025</cite>
-          </blockquote>
-          <Link
-            to="/reservas"
-            className="inline-block mt-10 bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 w-fit transition-opacity hover:opacity-90"
-          >
-            Reservar Agora
-          </Link>
+          </motion.blockquote>
+          <motion.div variants={fadeInUp}>
+            <Link
+              to="/reservas"
+              className="inline-block mt-10 bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 w-fit transition-opacity hover:opacity-90"
+            >
+              Reservar Agora
+            </Link>
+          </motion.div>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
@@ -366,7 +490,7 @@ function GaleriaPreview() {
       className="max-w-7xl mx-auto px-6 py-24"
     >
       <motion.div variants={fadeInUp} className="text-center mb-14">
-        <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">Galeria</span>
+        <span className={eyebrowClass}>Galeria</span>
         <h2 className="font-serif text-3xl md:text-4xl text-white mt-4">
           Uma <span className="italic text-navy-light">experiência</span> visual
         </h2>
@@ -411,9 +535,17 @@ function Home() {
   return (
     <>
       <Hero />
+      <div className="bg-bg py-14">
+        <ChapterDivider />
+      </div>
+      <ParallaxSection />
       <InfoBar />
-      <SobrePreview />
+      <CapituloLugar />
+      <ChapterDivider />
+      <CapituloTradicao />
+      <ChapterDivider />
       <MenuDestaque />
+      <ChapterDivider />
       <ReservasCTA />
       <GaleriaPreview />
     </>
