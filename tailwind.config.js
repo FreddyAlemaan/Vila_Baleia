@@ -14,7 +14,6 @@ export default {
         'text-muted': '#888888',
         navy: '#1E2D6B',
         'navy-light': '#3D52A0',
-        crimson: '#A51C4B',
         border: '#1A1A1A',
         'border-md': '#2A2A2A',
       },

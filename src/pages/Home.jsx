@@ -75,7 +75,7 @@ function Hero() {
 
         <motion.span
           variants={fadeInUp}
-          className="text-crimson font-sans font-medium text-[10px] tracking-[0.3em] uppercase mb-6"
+          className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase mb-6"
         >
           Porto Moniz · Madeira
         </motion.span>
@@ -96,7 +96,7 @@ function Hero() {
         <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 mt-10">
           <Link
             to="/reservas"
-            className="bg-crimson text-white text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-opacity hover:opacity-90"
+            className="bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-opacity hover:opacity-90"
           >
             Reservar Mesa
           </Link>
@@ -137,7 +137,7 @@ function InfoBar() {
               i < infoItems.length - 1 ? 'md:border-r border-border' : ''
             }`}
           >
-            <span className="text-crimson text-xl mb-3">{item.icon}</span>
+            <span className="text-white text-xl mb-3">{item.icon}</span>
             <span className="text-[#444] text-[9px] uppercase tracking-[0.15em] mb-1">{item.label}</span>
             <span className="text-[#CCC] text-xs font-light">{item.value}</span>
           </div>
@@ -157,7 +157,7 @@ function SobrePreview() {
       className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center"
     >
       <motion.div variants={fadeInUp}>
-        <span className="text-crimson font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
+        <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
           A Nossa História
         </span>
         <h2 className="font-serif text-3xl md:text-4xl text-white mt-4 leading-snug">
@@ -202,7 +202,7 @@ function MenuDestaque() {
     >
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={fadeInUp} className="text-center mb-14">
-          <span className="text-crimson font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
+          <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
             Os Nossos Pratos
           </span>
           <h2 className="font-serif text-3xl md:text-4xl text-white mt-4">
@@ -248,7 +248,7 @@ function MenuDestaque() {
                 <h3 className="font-serif text-lg text-white">{dish.name}</h3>
                 <p className="text-text-muted font-light text-xs leading-relaxed mt-3">{dish.description}</p>
                 <motion.span
-                  className="block text-crimson text-sm mt-4"
+                  className="block text-white text-sm mt-4"
                   initial={false}
                   whileHover={{ scale: 1.05 }}
                 >
@@ -294,7 +294,7 @@ function ReservasCTA() {
           </blockquote>
           <Link
             to="/reservas"
-            className="inline-block mt-10 bg-crimson text-white text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 w-fit transition-opacity hover:opacity-90"
+            className="inline-block mt-10 bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 w-fit transition-opacity hover:opacity-90"
           >
             Reservar Agora
           </Link>
@@ -346,7 +346,7 @@ function MiniReservaForm() {
       <textarea className={inputClass} rows={3} placeholder="Pedido especial (opcional)" />
       <button
         type="submit"
-        className="w-full bg-crimson text-white text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90"
+        className="w-full bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90"
       >
         Confirmar Reserva
       </button>
@@ -366,7 +366,7 @@ function GaleriaPreview() {
       className="max-w-7xl mx-auto px-6 py-24"
     >
       <motion.div variants={fadeInUp} className="text-center mb-14">
-        <span className="text-crimson font-sans font-medium text-[10px] tracking-[0.3em] uppercase">Galeria</span>
+        <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">Galeria</span>
         <h2 className="font-serif text-3xl md:text-4xl text-white mt-4">
           Uma <span className="italic text-navy-light">experiência</span> visual
         </h2>

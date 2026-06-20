@@ -19,7 +19,7 @@ function Menu() {
               onClick={() => setActive(cat.key)}
               className={`text-[11px] uppercase tracking-[0.12em] pb-2 transition-colors ${
                 active === cat.key
-                  ? 'text-white border-b-2 border-crimson'
+                  ? 'text-white border-b-2 border-white'
                   : 'text-text-muted hover:text-white'
               }`}
             >
@@ -43,7 +43,7 @@ function Menu() {
               >
                 <span className="font-serif text-white text-base">{item.name}</span>
                 <span className="flex-1 border-b border-dotted border-[#222] mx-2 hidden sm:block translate-y-[-4px]" />
-                <span className="text-crimson text-sm whitespace-nowrap">€{item.price.toFixed(2)}</span>
+                <span className="text-white text-sm whitespace-nowrap">€{item.price.toFixed(2)}</span>
               </div>
             ))}
           </motion.div>

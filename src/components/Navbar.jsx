@@ -50,7 +50,7 @@ function Navbar() {
 
         <Link
           to="/reservas"
-          className="hidden md:inline-block border border-crimson text-crimson text-[11px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 transition-colors duration-200 hover:bg-crimson hover:text-white"
+          className="hidden md:inline-block border border-white text-white text-[11px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 transition-colors duration-200 hover:bg-white hover:text-bg"
         >
           Reservar Mesa
         </Link>
@@ -89,7 +89,7 @@ function Navbar() {
               <Link
                 to="/reservas"
                 onClick={() => setOpen(false)}
-                className="border border-crimson text-crimson text-[11px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 text-center transition-colors duration-200 hover:bg-crimson hover:text-white"
+                className="border border-white text-white text-[11px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 text-center transition-colors duration-200 hover:bg-white hover:text-bg"
               >
                 Reservar Mesa
               </Link>

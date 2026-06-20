@@ -14,7 +14,7 @@ function Contacto() {
 
   const inputClass = (hasError) =>
     `w-full bg-[#141414] border text-[#CCC] text-xs font-sans px-4 py-3 focus:outline-none transition-colors ${
-      hasError ? 'border-crimson' : 'border-[#222] focus:border-navy'
+      hasError ? 'border-white' : 'border-[#222] focus:border-navy'
     }`
 
   const onSubmit = async () => {
@@ -32,7 +32,7 @@ function Contacto() {
           variants={fadeInUp}
           className="text-center mb-14"
         >
-          <span className="text-crimson font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
+          <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
             Contacto
           </span>
           <h1 className="font-serif text-3xl md:text-4xl text-white mt-4">
@@ -98,7 +98,7 @@ function Contacto() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-crimson text-white text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="w-full bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {isSubmitting ? 'A enviar...' : 'Enviar Mensagem'}
               </button>
