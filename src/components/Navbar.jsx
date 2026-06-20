@@ -22,7 +22,7 @@ function Navbar() {
   }, [])
 
   const linkClass = ({ isActive }) =>
-    `font-sans font-medium text-[11px] uppercase tracking-[0.12em] transition-colors duration-200 ${
+    `font-sans font-medium text-[12px] uppercase tracking-[0.12em] transition-colors duration-200 ${
       isActive ? 'text-white' : 'text-text-muted hover:text-white'
     }`
 
@@ -50,7 +50,7 @@ function Navbar() {
 
         <Link
           to="/reservas"
-          className="hidden md:inline-block border border-white text-white text-[11px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 transition-colors duration-200 hover:bg-white hover:text-bg"
+          className="hidden md:inline-block border border-white text-white text-[12px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 transition-colors duration-200 hover:bg-white hover:text-bg"
         >
           Reservar Mesa
         </Link>
@@ -89,7 +89,7 @@ function Navbar() {
               <Link
                 to="/reservas"
                 onClick={() => setOpen(false)}
-                className="border border-white text-white text-[11px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 text-center transition-colors duration-200 hover:bg-white hover:text-bg"
+                className="border border-white text-white text-[12px] font-medium uppercase tracking-[0.12em] px-5 py-2.5 text-center transition-colors duration-200 hover:bg-white hover:text-bg"
               >
                 Reservar Mesa
               </Link>

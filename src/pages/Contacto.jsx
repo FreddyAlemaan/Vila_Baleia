@@ -32,7 +32,7 @@ function Contacto() {
           variants={fadeInUp}
           className="text-center mb-14"
         >
-          <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
+          <span className="text-white font-sans font-medium text-[12px] tracking-[0.3em] uppercase">
             Contacto
           </span>
           <h1 className="font-serif text-3xl md:text-4xl text-white mt-4">
@@ -62,15 +62,15 @@ function Contacto() {
 
             <ul className="space-y-4 text-sm font-light text-text-muted">
               <li>
-                <span className="block text-[10px] uppercase tracking-[0.15em] text-[#444] mb-1">Endereço</span>
+                <span className="block text-[12px] uppercase tracking-[0.15em] text-[#7A7A7A] mb-1">Endereço</span>
                 Porto Moniz, Madeira, Portugal
               </li>
               <li>
-                <span className="block text-[10px] uppercase tracking-[0.15em] text-[#444] mb-1">Telefone</span>
+                <span className="block text-[12px] uppercase tracking-[0.15em] text-[#7A7A7A] mb-1">Telefone</span>
                 +351 291 853 147
               </li>
               <li>
-                <span className="block text-[10px] uppercase tracking-[0.15em] text-[#444] mb-1">Horário</span>
+                <span className="block text-[12px] uppercase tracking-[0.15em] text-[#7A7A7A] mb-1">Horário</span>
                 Segunda a Domingo, 12h00–22h00
               </li>
             </ul>
@@ -98,7 +98,7 @@ function Contacto() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="w-full bg-white text-bg text-[12px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {isSubmitting ? 'A enviar...' : 'Enviar Mensagem'}
               </button>

@@ -119,7 +119,7 @@ function Reservas() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90 disabled:opacity-50"
+            className="w-full bg-white text-bg text-[12px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90 disabled:opacity-50"
           >
             {isSubmitting ? 'A enviar...' : 'Confirmar Reserva'}
           </button>

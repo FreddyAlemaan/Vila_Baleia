@@ -17,7 +17,7 @@ function Menu() {
             <button
               key={cat.key}
               onClick={() => setActive(cat.key)}
-              className={`text-[11px] uppercase tracking-[0.12em] pb-2 transition-colors ${
+              className={`text-[12px] uppercase tracking-[0.12em] pb-2 transition-colors ${
                 active === cat.key
                   ? 'text-white border-b-2 border-white'
                   : 'text-text-muted hover:text-white'
@@ -49,7 +49,7 @@ function Menu() {
           </motion.div>
         </AnimatePresence>
 
-        <p className="text-[#555] text-[11px] font-light text-center mt-12 leading-relaxed">
+        <p className="text-[#8A8A8A] text-[12px] font-light text-center mt-12 leading-relaxed">
           IVA incluído à taxa em vigor. Este estabelecimento possui livro de reclamações.
         </p>
       </div>

@@ -9,9 +9,9 @@ export default {
       },
       colors: {
         bg: '#0A0A0A',
-        'bg-soft': '#111111',
-        'bg-card': '#0F0F0F',
-        'text-muted': '#888888',
+        'bg-soft': '#141414',
+        'bg-card': '#171717',
+        'text-muted': '#ABABAB',
         navy: '#1E2D6B',
         'navy-light': '#3D52A0',
         border: '#1A1A1A',

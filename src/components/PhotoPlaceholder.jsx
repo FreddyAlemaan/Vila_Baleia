@@ -7,7 +7,7 @@ function PhotoPlaceholder({ src, alt = '', label, className = '' }) {
   if (broken) {
     return (
       <div
-        className={`flex items-center justify-center bg-bg-card border border-border text-text-muted text-[10px] uppercase tracking-[0.2em] ${className}`}
+        className={`flex items-center justify-center bg-bg-card border border-border text-text-muted text-[12px] uppercase tracking-[0.2em] ${className}`}
       >
         {label || alt || src}
       </div>

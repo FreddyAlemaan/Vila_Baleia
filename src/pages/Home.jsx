@@ -19,7 +19,7 @@ const stats = [
   { value: 'nº4', label: 'Restaurante em Porto Moniz' },
 ]
 
-const eyebrowClass = 'text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase'
+const eyebrowClass = 'text-white font-sans font-medium text-[12px] tracking-[0.3em] uppercase'
 
 function ChapterDivider() {
   return (
@@ -33,16 +33,26 @@ function ChapterDivider() {
 
 function Hero() {
   const [videoError, setVideoError] = useState(false)
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
+    }
+  }, [])
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {!videoError ? (
         <div className="absolute inset-0 overflow-hidden">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
+            poster="/assets/hero-poster.jpg"
             onError={() => setVideoError(true)}
             className="absolute inset-0 w-full h-full object-cover"
             style={{ filter: 'brightness(0.45)' }}
@@ -93,13 +103,13 @@ function Hero() {
         <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 mt-10">
           <Link
             to="/reservas"
-            className="bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-opacity hover:opacity-90"
+            className="bg-white text-bg text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-opacity hover:opacity-90"
           >
             Reservar Mesa
           </Link>
           <Link
             to="/menu"
-            className="border border-navy text-white text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:bg-navy/20"
+            className="border border-navy text-white text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:bg-navy/20"
           >
             Ver Menu
           </Link>
@@ -112,7 +122,7 @@ function Hero() {
         animate="visible"
         className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-2"
       >
-        <span className="text-white/60 text-[9px] uppercase tracking-[0.2em]">Scroll</span>
+        <span className="text-white/80 text-[12px] uppercase tracking-[0.2em]">Scroll</span>
         <motion.span
           className="block w-px h-8 bg-white/40"
           animate={{ scaleY: [1, 0.4, 1] }}
@@ -165,7 +175,7 @@ function ParallaxSection() {
           Onde o oceano <em className="text-navy-light">encontra</em>
           <br />a montanha
         </motion.h2>
-        <motion.p variants={fadeInUp} className="text-sm text-white/50 tracking-widest font-light max-w-md mx-auto">
+        <motion.p variants={fadeInUp} className="text-sm text-white/75 tracking-widest font-light max-w-md mx-auto">
           No extremo norte da ilha, a natureza e a gastronomia encontram-se à mesa.
         </motion.p>
       </motion.div>
@@ -185,7 +195,7 @@ function InfoBar() {
             }`}
           >
             <span className="text-white text-xl mb-3">{item.icon}</span>
-            <span className="text-[#444] text-[9px] uppercase tracking-[0.15em] mb-1">{item.label}</span>
+            <span className="text-[#7A7A7A] text-[12px] uppercase tracking-[0.15em] mb-1">{item.label}</span>
             <span className="text-[#CCC] text-xs font-light">{item.value}</span>
           </div>
         ))}
@@ -201,7 +211,7 @@ function CapituloLugar() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={staggerContainer}
-      className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center"
+      className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center"
     >
       <motion.div variants={fadeInUp}>
         <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
@@ -275,7 +285,7 @@ function StatItem({ value, label, inView }) {
         {count}
         {suffix}
       </div>
-      <div className="text-text-muted text-[11px] uppercase tracking-[0.1em] mt-2">{label}</div>
+      <div className="text-text-muted text-[12px] uppercase tracking-[0.1em] mt-2">{label}</div>
     </div>
   )
 }
@@ -291,7 +301,7 @@ function CapituloTradicao() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={staggerContainer}
-      className="bg-bg-soft py-24"
+      className="bg-bg-soft py-20"
     >
       <div className="max-w-7xl mx-auto px-6 text-center">
         <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
@@ -320,7 +330,7 @@ function MenuDestaque() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={staggerContainer}
-      className="py-24"
+      className="py-20"
     >
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={fadeInUp} className="text-center mb-14">
@@ -338,14 +348,14 @@ function MenuDestaque() {
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {featuredDishes.map((dish) => (
             <motion.article
               key={dish.name}
               variants={fadeInUp}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="group bg-bg-card border border-border hover:border-navy transition-colors duration-300"
+              className="group bg-bg-card border border-border hover:border-navy transition-colors duration-300 w-full md:w-[calc(33.333%-1.1rem)]"
               style={{ willChange: 'transform' }}
             >
               <div className="h-44 overflow-hidden relative">
@@ -367,7 +377,7 @@ function MenuDestaque() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={viewportOnce}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="absolute top-3 left-3 bg-navy/90 text-white text-[9px] uppercase tracking-[0.15em] px-2.5 py-1"
+                  className="absolute top-3 left-3 bg-navy/90 text-white text-[12px] uppercase tracking-[0.15em] px-2.5 py-1"
                 >
                   {dish.tag}
                 </motion.span>
@@ -390,7 +400,7 @@ function MenuDestaque() {
         <motion.div variants={fadeInUp} className="text-center mt-12">
           <Link
             to="/menu"
-            className="inline-block border border-border-md text-white text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:border-navy-light"
+            className="inline-block border border-border-md text-white text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:border-navy-light"
           >
             Ver menu completo
           </Link>
@@ -407,7 +417,7 @@ function ReservasCTA() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={staggerContainer}
-      className="bg-[#0D0D0D] py-24"
+      className="bg-bg-soft py-20"
     >
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
         <motion.div variants={fadeInUp} className="flex flex-col justify-center">
@@ -427,12 +437,12 @@ function ReservasCTA() {
             <p className="text-text-muted font-light italic text-sm leading-relaxed">
               "O melhor restaurante de Porto Moniz. Comida incrível, serviço simpático."
             </p>
-            <cite className="block text-[#555] text-xs mt-3 not-italic">— Visitante no Google, 2025</cite>
+            <cite className="block text-[#8A8A8A] text-xs mt-3 not-italic">— Visitante no Google, 2025</cite>
           </motion.blockquote>
           <motion.div variants={fadeInUp}>
             <Link
               to="/reservas"
-              className="inline-block mt-10 bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 w-fit transition-opacity hover:opacity-90"
+              className="inline-block mt-10 bg-white text-bg text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 w-fit transition-opacity hover:opacity-90"
             >
               Reservar Agora
             </Link>
@@ -485,7 +495,7 @@ function MiniReservaForm() {
       <textarea className={inputClass} rows={3} placeholder="Pedido especial (opcional)" />
       <button
         type="submit"
-        className="w-full bg-white text-bg text-[11px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90"
+        className="w-full bg-white text-bg text-[12px] font-medium uppercase tracking-[0.12em] py-3.5 transition-opacity hover:opacity-90"
       >
         Confirmar Reserva
       </button>
@@ -502,7 +512,7 @@ function GaleriaPreview() {
       whileInView="visible"
       viewport={viewportOnce}
       variants={staggerContainer}
-      className="max-w-7xl mx-auto px-6 py-24"
+      className="max-w-7xl mx-auto px-6 py-20"
     >
       <motion.div variants={fadeInUp} className="text-center mb-14">
         <span className={eyebrowClass}>Galeria</span>
@@ -537,7 +547,7 @@ function GaleriaPreview() {
       <motion.div variants={fadeInUp} className="text-center mt-10">
         <Link
           to="/galeria"
-          className="text-text-muted text-[11px] uppercase tracking-[0.12em] hover:text-white transition-colors"
+          className="text-text-muted text-[12px] uppercase tracking-[0.12em] hover:text-white transition-colors"
         >
           Ver galeria completa →
         </Link>

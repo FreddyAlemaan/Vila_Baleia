@@ -44,7 +44,7 @@ function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[11px] uppercase tracking-[0.12em] text-white mb-5">Navegação</h3>
+          <h3 className="text-[12px] uppercase tracking-[0.12em] text-white mb-5">Navegação</h3>
           <ul className="space-y-3">
             {navLinks.map((l) => (
               <li key={l.to}>
@@ -57,7 +57,7 @@ function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[11px] uppercase tracking-[0.12em] text-white mb-5">Contacto</h3>
+          <h3 className="text-[12px] uppercase tracking-[0.12em] text-white mb-5">Contacto</h3>
           <ul className="space-y-3 text-text-muted text-[13px] font-light">
             <li>+351 291 853 147</li>
             <li>Porto Moniz, Madeira</li>
@@ -67,7 +67,7 @@ function Footer() {
       </div>
 
       <div className="border-t border-border py-6">
-        <p className="text-center text-text-muted text-[11px] font-light tracking-wide">
+        <p className="text-center text-text-muted text-[12px] font-light tracking-wide">
           © 2026 Vila Baleia · Todos os direitos reservados
         </p>
       </div>

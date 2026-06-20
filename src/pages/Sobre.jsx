@@ -64,7 +64,7 @@ function Sobre() {
           {stats.map((s) => (
             <motion.div key={s.label} variants={fadeInUp}>
               <div className="font-serif text-3xl text-white">{s.value}</div>
-              <div className="text-text-muted text-[11px] uppercase tracking-[0.1em] mt-1">{s.label}</div>
+              <div className="text-text-muted text-[12px] uppercase tracking-[0.1em] mt-1">{s.label}</div>
             </motion.div>
           ))}
         </div>

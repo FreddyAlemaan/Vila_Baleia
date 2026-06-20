@@ -82,7 +82,7 @@ function Galeria() {
     <div className="pt-20">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-14">
-          <span className="text-white font-sans font-medium text-[10px] tracking-[0.3em] uppercase">
+          <span className="text-white font-sans font-medium text-[12px] tracking-[0.3em] uppercase">
             Galeria
           </span>
           <h1 className="font-serif text-3xl md:text-4xl text-white mt-4">

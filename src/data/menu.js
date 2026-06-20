@@ -70,23 +70,37 @@ export const menuCategories = [
 export const featuredDishes = [
   {
     tag: 'PEIXE',
-    name: 'Filete Espada c/Banana',
-    description: 'O prato mais icónico da ilha. Peixe-espada grelhado com banana da Madeira.',
+    name: 'Filete Espada Grelhado',
+    description: 'Peixe-espada fresco grelhado, servido com legumes salteados e batata.',
     price: 22.50,
-    image: 'filete-banana.jpg',
-  },
-  {
-    tag: 'ENTRADAS',
-    name: 'Lapas Grelhadas',
-    description: 'Lapas frescas grelhadas com manteiga de alho e limão. Entrada obrigatória em Madeira.',
-    price: 22.50,
-    image: 'lapas.jpg',
+    image: 'filete-grelhado.jpg',
   },
   {
     tag: 'CARNE',
     name: 'Espetada Regional',
     description: 'Carne tenra em espeto de loureiro, servida com os acompanhamentos tradicionais.',
     price: 22.50,
-    image: 'espetada.jpg',
+    image: 'espetada-regional.jpg',
+  },
+  {
+    tag: 'PEIXE',
+    name: 'Salmão Grelhado',
+    description: 'Lombo de salmão grelhado no ponto, com um toque cítrico e ervas frescas.',
+    price: 22.50,
+    image: 'salmao-grelhado.jpg',
+  },
+  {
+    tag: 'PEIXE',
+    name: 'Espetada Peixe e Gambas',
+    description: 'Espeto grelhado de peixe e gambas frescas, com legumes da época.',
+    price: 27.50,
+    image: 'espetada-peixe-gambas.jpg',
+  },
+  {
+    tag: 'PEIXE',
+    name: 'Bife de Atum',
+    description: 'Bife de atum grelhado, selado por fora e suculento por dentro.',
+    price: 21.50,
+    image: 'bife-atum.jpg',
   },
 ]
