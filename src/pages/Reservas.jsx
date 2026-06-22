@@ -20,8 +20,8 @@ function Reservas() {
   const [status, setStatus] = useState(null) // 'success' | 'error' | null
 
   const inputClass = (hasError) =>
-    `w-full bg-[#141414] border text-[#CCC] text-xs font-sans px-4 py-3 focus:outline-none transition-colors ${
-      hasError ? 'border-white' : 'border-[#222] focus:border-navy'
+    `w-full bg-transparent border-0 border-b text-[#CCC] text-xs font-sans px-1 py-3 focus:outline-none transition-colors ${
+      hasError ? 'border-white' : 'border-[#2A2A2A] focus:border-white'
     }`
 
   const onSubmit = async (data, e) => {

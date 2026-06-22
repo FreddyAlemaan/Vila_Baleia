@@ -5,7 +5,6 @@ const navLinks = [
   { to: '/', label: 'Início' },
   { to: '/menu', label: 'Menu' },
   { to: '/reservas', label: 'Reservas' },
-  { to: '/galeria', label: 'Galeria' },
   { to: '/sobre', label: 'Sobre Nós' },
   { to: '/contacto', label: 'Contacto' },
 ]
@@ -19,13 +18,13 @@ const socials = [
 function Footer() {
   return (
     <footer className="bg-[#080808] border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <Logo className="h-10 mb-4" />
-          <p className="text-text-muted text-[13px] font-light leading-relaxed max-w-xs">
-            Gastronomia portuguesa no coração de Porto Moniz, com vista para o Atlântico.
+          <Logo className="h-10 mb-6" />
+          <p className="font-serif italic text-2xl text-white leading-snug max-w-sm">
+            Sabores do Atlântico, tradição madeirense.
           </p>
-          <div className="flex gap-4 mt-6">
+          <div className="flex gap-4 mt-8">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -44,32 +43,35 @@ function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[12px] uppercase tracking-[0.12em] text-white mb-5">Navegação</h3>
-          <ul className="space-y-3">
-            {navLinks.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="text-text-muted text-[13px] font-light hover:text-white transition-colors">
-                  {l.label}
+          <ul>
+            {navLinks.map((l, i) => (
+              <li key={l.to} className="border-b border-border">
+                <Link
+                  to={l.to}
+                  className="flex items-baseline gap-4 py-3.5 text-text-muted hover:text-white transition-colors group"
+                >
+                  <span className="text-[11px] text-navy-light tracking-[0.1em]">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-serif text-lg group-hover:translate-x-1 transition-transform">
+                    {l.label}
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
-
-        <div>
-          <h3 className="text-[12px] uppercase tracking-[0.12em] text-white mb-5">Contacto</h3>
-          <ul className="space-y-3 text-text-muted text-[13px] font-light">
-            <li>+351 291 853 147</li>
-            <li>Porto Moniz, Madeira</li>
-            <li>Seg–Dom: 12h00–22h00</li>
-          </ul>
-        </div>
       </div>
 
       <div className="border-t border-border py-6">
-        <p className="text-center text-text-muted text-[12px] font-light tracking-wide">
-          © 2026 Vila Baleia · Todos os direitos reservados
-        </p>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-text-muted text-[12px] font-light tracking-wide">
+            © 2026 Vila Baleia · Todos os direitos reservados
+          </p>
+          <p className="text-text-muted text-[12px] font-light tracking-wide">
+            +351 291 853 147 · Porto Moniz, Madeira
+          </p>
+        </div>
       </div>
     </footer>
   )

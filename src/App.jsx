@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import Reservas from './pages/Reservas'
-import Galeria from './pages/Galeria'
 import Sobre from './pages/Sobre'
 import Contacto from './pages/Contacto'
 
@@ -27,7 +26,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/reservas" element={<Reservas />} />
-          <Route path="/galeria" element={<Galeria />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
