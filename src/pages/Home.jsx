@@ -162,27 +162,27 @@ function Hero() {
         variants={fadeIn}
         initial="hidden"
         animate="visible"
-        className="hidden md:block absolute bottom-0 right-12 translate-y-1/6 w-72 bg-navy px-7 py-6 shadow-xl transition-opacity hover:opacity-90"
+        className="hidden md:block absolute bottom-0 right-12 translate-y-1/6 w-72 bg-white px-7 py-6 shadow-xl transition-opacity hover:opacity-90"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             {Array.from({ length: 5 }).map((_, i) => (
-              <span key={i} className={i < 4 ? 'text-navy-light' : 'text-white/25'}>
+              <span key={i} className={i < 4 ? 'text-navy' : 'text-bg/20'}>
                 ★
               </span>
             ))}
           </div>
-          <img src="/assets/logo-tail.png" alt="" className="h-6 w-auto opacity-90" />
+          <img src="/assets/logo-tail.png" alt="" className="h-6 w-auto" />
         </div>
-        <div className="h-px bg-white/15 my-4" />
+        <div className="h-px bg-bg/15 my-4" />
         <div className="flex items-end justify-between">
           <div className="flex items-baseline gap-1">
-            <span className="font-serif text-4xl text-white">3.9</span>
-            <span className="text-white/50 text-sm">/5</span>
+            <span className="font-serif text-4xl text-bg">3.9</span>
+            <span className="text-bg/50 text-sm">/5</span>
           </div>
           <div className="text-right">
-            <p className="text-white text-[11px] uppercase tracking-[0.12em]">Google Reviews</p>
-            <p className="text-white/50 text-[11px] mt-1">943 opiniões</p>
+            <p className="text-bg text-[11px] uppercase tracking-[0.12em]">Google Reviews</p>
+            <p className="text-bg/50 text-[11px] mt-1">943 opiniões</p>
           </div>
         </div>
       </motion.a>
@@ -432,6 +432,9 @@ function MenuDestaque() {
           {featuredDishes.map((dish) => (
             <motion.article
               key={dish.name}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               variants={circleReveal}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
