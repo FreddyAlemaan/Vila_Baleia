@@ -9,7 +9,7 @@ html {
 body {
   margin: 0;
   background-color: #0A0A0A;
-  color: #FFFFFF;
+  color: #EDE7DA;
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
 
 ::selection {
   background: #3D52A0;
-  color: #FFFFFF;
+  color: #EDE7DA;
 }
 
 ::-webkit-scrollbar {

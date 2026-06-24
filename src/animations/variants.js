@@ -14,13 +14,3 @@ export const staggerContainer = {
 }
 
 export const viewportOnce = { once: true, margin: '-100px' }
-
-export const circleReveal = {
-  hidden: { clipPath: 'circle(0% at 50% 50%)', opacity: 0, scale: 0.94 },
-  visible: {
-    clipPath: 'circle(150% at 50% 50%)',
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-  },
-}

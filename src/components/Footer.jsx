@@ -21,7 +21,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
           <Logo className="h-10 mb-6" />
-          <p className="font-serif italic text-2xl text-white leading-snug max-w-sm">
+          <p className="font-serif italic text-2xl text-bone leading-snug max-w-sm">
             Sabores do Atlântico, tradição madeirense.
           </p>
           <div className="flex gap-4 mt-8">
@@ -32,7 +32,7 @@ function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={s.label}
-                className="w-8 h-8 flex items-center justify-center border border-border text-text-muted hover:text-white hover:border-border-md transition-colors"
+                className="w-8 h-8 flex items-center justify-center border border-border text-text-muted hover:text-bone hover:border-border-md transition-colors"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                   <path d={s.icon} />
@@ -48,7 +48,7 @@ function Footer() {
               <li key={l.to} className="border-b border-border">
                 <Link
                   to={l.to}
-                  className="flex items-baseline gap-4 py-3.5 text-text-muted hover:text-white transition-colors group"
+                  className="flex items-baseline gap-4 py-3.5 text-text-muted hover:text-bone transition-colors group"
                 >
                   <span className="text-[11px] text-navy-light tracking-[0.1em]">
                     {String(i + 1).padStart(2, '0')}

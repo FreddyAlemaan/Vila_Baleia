@@ -12,7 +12,7 @@ function PageHeader({ title, image, height = '40vh' }) {
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          className="font-serif text-4xl md:text-5xl text-white text-center px-6"
+          className="font-serif text-4xl md:text-5xl text-bone text-center px-6"
         >
           {title}
         </motion.h1>

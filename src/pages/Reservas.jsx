@@ -130,7 +130,7 @@ function Reservas() {
             </p>
           )}
           {status === 'error' && (
-            <p className="text-white text-sm text-center">
+            <p className="text-bone text-sm text-center">
               Ocorreu um erro ao enviar a reserva. Tente novamente ou contacte-nos por telefone.
             </p>
           )}

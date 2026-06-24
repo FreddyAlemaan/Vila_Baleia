@@ -17,7 +17,7 @@ function Menu() {
       >
         <div className="max-w-3xl mx-auto px-6 py-16">
           <div className="bg-bg-card px-6 py-10 md:px-12 md:py-14">
-            <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+            <h2 className="font-serif text-3xl md:text-4xl text-bone leading-tight">
               A Nossa
               <br />
               Carta
@@ -30,8 +30,8 @@ function Menu() {
                   onClick={() => setActive(cat.key)}
                   className={`text-[12px] uppercase tracking-[0.12em] pb-2 transition-colors ${
                     active === cat.key
-                      ? 'text-white border-b-2 border-white'
-                      : 'text-white/50 hover:text-white'
+                      ? 'text-bone border-b-2 border-white'
+                      : 'text-bone/50 hover:text-bone'
                   }`}
                 >
                   {cat.label}
@@ -52,9 +52,9 @@ function Menu() {
                     key={item.name}
                     className="flex items-baseline justify-between gap-4 py-5 border-b border-white/10"
                   >
-                    <span className="font-serif text-white text-lg">{item.name}</span>
+                    <span className="font-serif text-bone text-lg">{item.name}</span>
                     <span className="flex-1 border-b border-dotted border-white/20 mx-2 hidden sm:block translate-y-[-4px]" />
-                    <span className="text-white text-sm whitespace-nowrap">€{item.price.toFixed(2)}</span>
+                    <span className="text-bone text-sm whitespace-nowrap">€{item.price.toFixed(2)}</span>
                   </div>
                 ))}
               </motion.div>

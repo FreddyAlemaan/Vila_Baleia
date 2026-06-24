@@ -5,7 +5,7 @@ function Logo({ className = 'h-12' }) {
 
   if (broken) {
     return (
-      <span className={`font-serif text-white leading-none ${className} flex items-center text-xl`}>
+      <span className={`font-serif text-bone leading-none ${className} flex items-center text-xl`}>
         Vila <span className="text-navy-light ml-1">Baleia</span>
       </span>
     )

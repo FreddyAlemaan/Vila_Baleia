@@ -12,6 +12,7 @@ export default {
         'bg-soft': '#141414',
         'bg-card': '#171717',
         'text-muted': '#ABABAB',
+        bone: '#EDE7DA',
         navy: '#1E2D6B',
         'navy-light': '#3D52A0',
         border: '#1A1A1A',

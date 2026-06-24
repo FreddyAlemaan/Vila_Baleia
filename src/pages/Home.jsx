@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import PhotoPlaceholder from '../components/PhotoPlaceholder'
-import { fadeInUp, fadeIn, staggerContainer, viewportOnce, circleReveal } from '../animations/variants'
+import { fadeInUp, fadeIn, staggerContainer, viewportOnce } from '../animations/variants'
 import { featuredDishes } from '../data/menu'
 
 const infoItems = [
@@ -19,7 +20,12 @@ const stats = [
   { value: 'nº4', label: 'Restaurante em Porto Moniz' },
 ]
 
-const eyebrowClass = 'text-white font-sans font-medium text-[12px] tracking-[0.3em] uppercase'
+const eyebrowClass = 'text-bone font-sans font-medium text-[12px] tracking-[0.3em] uppercase'
+
+const accompanimentsByTag = {
+  PEIXE: ['Salada', 'Arroz', 'Batata cozida'],
+  CARNE: ['Salada', 'Arroz', 'Batata frita'],
+}
 
 function ChapterDivider() {
   return (
@@ -90,14 +96,14 @@ function Hero() {
         <div className="flex items-center justify-center gap-6 md:gap-12">
           <motion.span
             variants={fadeInUp}
-            className="hidden md:block text-white/70 font-sans text-[11px] tracking-[0.2em] uppercase"
+            className="hidden md:block text-bone/70 font-sans text-[11px] tracking-[0.2em] uppercase"
           >
             Madeira
             <br />
             Portugal
           </motion.span>
 
-          <motion.h1 variants={fadeInUp} className="font-serif text-5xl md:text-7xl text-white leading-[1.1]">
+          <motion.h1 variants={fadeInUp} className="font-serif text-5xl md:text-7xl text-bone leading-[1.1]">
             Onde o Mar
             <br />
             <span className="italic">Encontra a Mesa</span>
@@ -105,7 +111,7 @@ function Hero() {
 
           <motion.span
             variants={fadeInUp}
-            className="hidden md:block text-white/70 font-sans text-[11px] tracking-[0.2em] uppercase"
+            className="hidden md:block text-bone/70 font-sans text-[11px] tracking-[0.2em] uppercase"
           >
             Desde
             <br />
@@ -122,7 +128,7 @@ function Hero() {
           </Link>
           <Link
             to="/menu"
-            className="border border-navy text-white text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:bg-navy/20"
+            className="border border-navy text-bone text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:bg-navy/20"
           >
             Ver Menu
           </Link>
@@ -135,7 +141,7 @@ function Hero() {
         animate="visible"
         className="hidden md:flex absolute bottom-12 left-12 flex-col items-start max-w-xs"
       >
-        <p className="text-white/70 font-sans font-light text-sm leading-relaxed mb-6">
+        <p className="text-bone/70 font-sans font-light text-sm leading-relaxed mb-6">
           Sabores de Porto Moniz, à sombra do Atlântico — ingredientes frescos do mar e da ilha, em
           cada prato.
         </p>
@@ -148,7 +154,7 @@ function Hero() {
           </Link>
           <Link
             to="/menu"
-            className="border border-white/40 text-white text-[12px] font-medium uppercase tracking-[0.12em] px-6 py-3 transition-colors hover:bg-white/10"
+            className="border border-white/40 text-bone text-[12px] font-medium uppercase tracking-[0.12em] px-6 py-3 transition-colors hover:bg-white/10"
           >
             Ver Menu
           </Link>
@@ -193,7 +199,7 @@ function Hero() {
         animate="visible"
         className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-2 md:hidden"
       >
-        <span className="text-white/80 text-[12px] uppercase tracking-[0.2em]">Scroll</span>
+        <span className="text-bone/80 text-[12px] uppercase tracking-[0.2em]">Scroll</span>
         <motion.span
           className="block w-px h-8 bg-white/40"
           animate={{ scaleY: [1, 0.4, 1] }}
@@ -242,11 +248,11 @@ function ParallaxSection() {
         <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-4`}>
           Porto Moniz · Madeira
         </motion.p>
-        <motion.h2 variants={fadeInUp} className="font-serif text-4xl md:text-5xl text-white leading-tight mb-4">
+        <motion.h2 variants={fadeInUp} className="font-serif text-4xl md:text-5xl text-bone leading-tight mb-4">
           Onde o oceano <em className="text-navy-light">encontra</em>
           <br />a montanha
         </motion.h2>
-        <motion.p variants={fadeInUp} className="text-sm text-white/75 tracking-widest font-light max-w-md mx-auto">
+        <motion.p variants={fadeInUp} className="text-sm text-bone/75 tracking-widest font-light max-w-md mx-auto">
           No extremo norte da ilha, a natureza e a gastronomia encontram-se à mesa.
         </motion.p>
       </motion.div>
@@ -265,7 +271,7 @@ function InfoBar() {
               i < infoItems.length - 1 ? 'md:border-r border-border' : ''
             }`}
           >
-            <span className="text-white text-xl mb-3">{item.icon}</span>
+            <span className="text-bone text-xl mb-3">{item.icon}</span>
             <span className="text-[#7A7A7A] text-[12px] uppercase tracking-[0.15em] mb-1">{item.label}</span>
             <span className="text-[#CCC] text-xs font-light">{item.value}</span>
           </div>
@@ -288,7 +294,7 @@ function CapituloLugar() {
         <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
           Capítulo I
         </motion.p>
-        <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-white leading-tight">
+        <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-bone leading-tight">
           Um lugar onde o tempo
           <br />
           <em className="italic text-navy-light">parece parar</em>
@@ -360,7 +366,7 @@ function StatItem({ value, label, inView }) {
 
   return (
     <div className="text-center">
-      <div className="font-serif text-4xl text-white">
+      <div className="font-serif text-4xl text-bone">
         {prefix}
         {count}
         {suffix}
@@ -387,7 +393,7 @@ function CapituloTradicao() {
         <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
           Capítulo II
         </motion.p>
-        <motion.h3 variants={fadeInUp} className="font-serif text-3xl text-white mb-12">
+        <motion.h3 variants={fadeInUp} className="font-serif text-3xl text-bone mb-12">
           Mais de uma década
           <br />
           <em className="italic text-navy-light">de história</em>
@@ -403,7 +409,132 @@ function CapituloTradicao() {
   )
 }
 
+function DishCard({ dish, onSelect }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 95%', 'start 50%'],
+  })
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ['circle(0% at 50% 50%)', 'circle(150% at 50% 50%)']
+  )
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1])
+
+  return (
+    <motion.article
+      ref={ref}
+      onClick={() => onSelect(dish)}
+      style={{ clipPath, opacity, scale, willChange: 'transform' }}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      className="group bg-bg-card border border-border hover:border-navy transition-colors duration-300 w-full md:w-[calc(33.333%-1.1rem)] cursor-pointer"
+    >
+      <div className="h-44 overflow-hidden relative">
+        <motion.div
+          className="w-full h-full"
+          whileHover={{ scale: 1.08 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <PhotoPlaceholder
+            src={dish.image}
+            alt={dish.name}
+            label={dish.image}
+            className="w-full h-full"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent opacity-80" />
+        <span className="absolute top-3 left-3 bg-navy/90 text-bone text-[12px] uppercase tracking-[0.15em] px-2.5 py-1">
+          {dish.tag}
+        </span>
+      </div>
+      <div className="p-6">
+        <h3 className="font-serif text-lg text-bone">{dish.name}</h3>
+        <p className="text-text-muted font-light text-xs leading-relaxed mt-3">{dish.description}</p>
+        <motion.span
+          className="block text-bone text-sm mt-4"
+          initial={false}
+          whileHover={{ scale: 1.05 }}
+        >
+          €{dish.price.toFixed(2)}
+        </motion.span>
+      </div>
+    </motion.article>
+  )
+}
+
+function DishModal({ dish, onClose }) {
+  const accompaniments = accompanimentsByTag[dish.tag] || []
+
+  return createPortal(
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[60] bg-black/80 flex items-center justify-center px-6"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 16 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+        onClick={(e) => e.stopPropagation()}
+        className="bg-bg-card border border-border-md max-w-md w-full overflow-hidden"
+      >
+        <div className="h-52 relative">
+          <PhotoPlaceholder
+            src={dish.image}
+            alt={dish.name}
+            label={dish.image}
+            className="w-full h-full"
+          />
+          <button
+            aria-label="Fechar"
+            onClick={onClose}
+            className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-bg/80 text-bone hover:text-white transition-colors"
+          >
+            ✕
+          </button>
+          <span className="absolute top-3 left-3 bg-navy/90 text-bone text-[12px] uppercase tracking-[0.15em] px-2.5 py-1">
+            {dish.tag}
+          </span>
+        </div>
+
+        <div className="p-7">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="font-serif text-2xl text-bone">{dish.name}</h3>
+            <span className="text-bone text-sm whitespace-nowrap">€{dish.price.toFixed(2)}</span>
+          </div>
+          <p className="text-text-muted font-light text-sm leading-relaxed mt-3">{dish.description}</p>
+
+          {accompaniments.length > 0 && (
+            <div className="mt-6 pt-5 border-t border-border">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-navy-light mb-3">
+                Acompanhamentos
+              </p>
+              <ul className="space-y-2">
+                {accompaniments.map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-bone/85 font-light">
+                    <span className="w-1 h-1 rounded-full bg-navy-light flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>,
+    document.body
+  )
+}
+
 function MenuDestaque() {
+  const [selectedDish, setSelectedDish] = useState(null)
+
   return (
     <motion.section
       initial="hidden"
@@ -417,7 +548,7 @@ function MenuDestaque() {
           <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
             Capítulo III
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-white mb-3">
+          <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-bone mb-3">
             Do mar à mesa,
             <br />
             <em className="italic text-navy-light">em minutos</em>
@@ -430,65 +561,23 @@ function MenuDestaque() {
 
         <div className="flex flex-wrap justify-center gap-6">
           {featuredDishes.map((dish) => (
-            <motion.article
-              key={dish.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={circleReveal}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="group bg-bg-card border border-border hover:border-navy transition-colors duration-300 w-full md:w-[calc(33.333%-1.1rem)]"
-              style={{ willChange: 'transform' }}
-            >
-              <div className="h-44 overflow-hidden relative">
-                <motion.div
-                  className="w-full h-full"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                >
-                  <PhotoPlaceholder
-                    src={dish.image}
-                    alt={dish.name}
-                    label={dish.image}
-                    className="w-full h-full"
-                  />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent opacity-80" />
-                <motion.span
-                  initial={{ opacity: 0, x: -8 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ delay: 0.2, duration: 0.4 }}
-                  className="absolute top-3 left-3 bg-navy/90 text-white text-[12px] uppercase tracking-[0.15em] px-2.5 py-1"
-                >
-                  {dish.tag}
-                </motion.span>
-              </div>
-              <div className="p-6">
-                <h3 className="font-serif text-lg text-white">{dish.name}</h3>
-                <p className="text-text-muted font-light text-xs leading-relaxed mt-3">{dish.description}</p>
-                <motion.span
-                  className="block text-white text-sm mt-4"
-                  initial={false}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  €{dish.price.toFixed(2)}
-                </motion.span>
-              </div>
-            </motion.article>
+            <DishCard key={dish.name} dish={dish} onSelect={setSelectedDish} />
           ))}
         </div>
 
         <motion.div variants={fadeInUp} className="text-center mt-12">
           <Link
             to="/menu"
-            className="inline-block border border-border-md text-white text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:border-navy-light"
+            className="inline-block border border-border-md text-bone text-[12px] font-medium uppercase tracking-[0.12em] px-8 py-3.5 transition-colors hover:border-navy-light"
           >
             Ver menu completo
           </Link>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {selectedDish && <DishModal dish={selectedDish} onClose={() => setSelectedDish(null)} />}
+      </AnimatePresence>
     </motion.section>
   )
 }
@@ -507,12 +596,12 @@ function ReservasCTA() {
           <motion.p variants={fadeInUp} className={`${eyebrowClass} mb-3`}>
             Capítulo IV
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-white mb-3">
+          <motion.h2 variants={fadeInUp} className="font-serif text-3xl md:text-4xl text-bone mb-3">
             A sua mesa
             <br />
-            <em className="italic text-white">está à espera</em>
+            <em className="italic text-bone">está à espera</em>
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-sm text-white/70 font-light mb-8 max-w-md">
+          <motion.p variants={fadeInUp} className="text-sm text-bone/70 font-light mb-8 max-w-md">
             Reserve agora e garanta o seu lugar numa experiência que não vai esquecer.
           </motion.p>
 
@@ -522,7 +611,7 @@ function ReservasCTA() {
               'Ambiente acolhedor à beira-mar',
               'Reserva confirmada em minutos',
             ].map((feature) => (
-              <li key={feature} className="flex items-center gap-3 text-sm text-white/85 font-light">
+              <li key={feature} className="flex items-center gap-3 text-sm text-bone/85 font-light">
                 <span className="flex-shrink-0 w-5 h-5 rounded-full border border-white/40 flex items-center justify-center text-[10px]">
                   ✓
                 </span>
@@ -532,10 +621,10 @@ function ReservasCTA() {
           </motion.ul>
 
           <motion.blockquote variants={fadeInUp} className="border-l-2 border-white/30 pl-5 mt-2">
-            <p className="text-white/70 font-light italic text-sm leading-relaxed">
+            <p className="text-bone/70 font-light italic text-sm leading-relaxed">
               "O melhor restaurante de Porto Moniz. Comida incrível, serviço simpático."
             </p>
-            <cite className="block text-white/50 text-xs mt-3 not-italic">— Visitante no Google, 2025</cite>
+            <cite className="block text-bone/50 text-xs mt-3 not-italic">— Visitante no Google, 2025</cite>
           </motion.blockquote>
           <motion.div variants={fadeInUp}>
             <Link

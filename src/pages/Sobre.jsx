@@ -63,7 +63,7 @@ function Sobre() {
         <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s) => (
             <motion.div key={s.label} variants={fadeInUp}>
-              <div className="font-serif text-3xl text-white">{s.value}</div>
+              <div className="font-serif text-3xl text-bone">{s.value}</div>
               <div className="text-text-muted text-[12px] uppercase tracking-[0.1em] mt-1">{s.label}</div>
             </motion.div>
           ))}
@@ -80,10 +80,10 @@ function Sobre() {
         <div className="grid md:grid-cols-3 gap-10">
           {valores.map((v) => (
             <motion.div key={v.title} variants={fadeInUp} className="text-center">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.5" className="w-10 h-10 mx-auto mb-5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EDE7DA" strokeWidth="1.5" className="w-10 h-10 mx-auto mb-5">
                 <path d={v.icon} />
               </svg>
-              <h3 className="font-serif text-xl text-white">{v.title}</h3>
+              <h3 className="font-serif text-xl text-bone">{v.title}</h3>
               <p className="text-text-muted font-light text-sm leading-relaxed mt-3">{v.text}</p>
             </motion.div>
           ))}

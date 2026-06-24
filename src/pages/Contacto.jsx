@@ -32,10 +32,10 @@ function Contacto() {
           variants={fadeInUp}
           className="text-center mb-14"
         >
-          <span className="text-white font-sans font-medium text-[12px] tracking-[0.3em] uppercase">
+          <span className="text-bone font-sans font-medium text-[12px] tracking-[0.3em] uppercase">
             Contacto
           </span>
-          <h1 className="font-serif text-3xl md:text-4xl text-white mt-4">
+          <h1 className="font-serif text-3xl md:text-4xl text-bone mt-4">
             Fale <span className="italic text-navy-light">connosco</span>
           </h1>
         </motion.div>
